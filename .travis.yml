@@ -9,8 +9,10 @@ before_install:
 - |
     if [[ -z "$TRAVIS_COMMIT_RANGE" ]]; then
         # Builds triggered by initial commit of a new branch.
+        echo "Empty Travis Commit Range"
         DOCS_ONLY=0
     else
+        echo "Commit range $TRAVIS_COMMIT_RANGE"
         DOCS_REGEX='(OWNERS|LICENSE)|(\.md$)|(^docs/)'
         [[ -z "$(git diff --name-only $TRAVIS_COMMIT_RANGE | grep -vE $DOCS_REGEX)" ]]
         DOCS_ONLY=$?
